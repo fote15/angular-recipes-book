@@ -1,0 +1,120 @@
+<div class="csontainer">
+<div class="row ">
+  <div class="col-12">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" >
+      <div class="row  ">
+        <div class="col-xs-12">
+          <button  type="submit" class="mr-2 btn btn-success"
+                  [disabled]="recipeForm.invalid">Сохранить</button>
+          <a [routerLink]="['../']">
+          <button type="submit" class="btn btn-danger">Отменить</button></a>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="name">Название</label>
+            <input
+              formControlName="name"
+              type="text"
+              id="name"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="imagePath">Ссылка к картинке</label>
+            <input
+              formControlName="imagePath"
+              type="text"
+              id="imagePath"
+              class="form-control" #imgPath>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row ">
+        <div class="col-12">
+          <img [src]="imgPath.value" alt="" class="img-responsive">
+        </div>
+      </div>
+
+
+      <div class="row ">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="descr">Описание</label>
+            <textarea
+              formControlName="description"
+              type="text"
+              id="descr"
+              class="form-control" rows="5">
+               </textarea>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row " >
+        <div
+          formArrayName="ingredients"
+          class="col-12">
+          <div class="row "
+               >
+            <div class="col-12">
+              <div class=" " style="margin-top: 10px"
+                   *ngFor="let group of
+              addressArray.controls;
+               let i = index"
+              >
+                <div class="row "
+                     [formGroupName]="i">
+              <div
+                   class="col-7" >
+                <label for="ingrName">Ингредиент</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="name"
+                id="ingrName">
+              </div>
+              <div class="col-3">
+                <label for="ingrAmount">Кол-во</label>
+                <input
+                  type="number"
+                  formControlName="amount"
+                  class="form-control" id="ingrAmount">
+              </div>
+              <div class="col-2">
+                <button type="button" class="btn btn-danger" (click)="removeIngr(i)">X</button>
+              </div>
+                </div>
+
+
+              </div>
+            </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      <div class="row">
+
+        <div class="col-12">
+          <hr>
+          <button  type="button" class="btn
+          btn-success"
+                  (click)="onAddIngr()">Дабавить ингредиент</button>
+
+        </div>
+
+
+      </div>
+    </form>
+  </div>
+</div>
+</div>
